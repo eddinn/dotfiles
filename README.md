@@ -5,7 +5,7 @@
 ### Installation, setup and usage
 
 **Note:**
-This README.md is compiled from the writings and idea of [Shawn McElroy](https://writingco.de/how-to-manage-your-dotfiles-with-stow/)
+This README.md is compiled from the writings and idea of <a href="https://writingco.de/how-to-manage-your-dotfiles-with-stow/" target="_blank">Shawn McElroy</a>
 
 
 A set of simple instructions to help you get started
