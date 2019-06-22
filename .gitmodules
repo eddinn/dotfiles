@@ -1,0 +1,4 @@
+[submodule "zsh"]
+	path = zsh
+	url = git@github.com:eddinn/zsh.git
+	branch = master
