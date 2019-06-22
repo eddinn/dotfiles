@@ -143,4 +143,4 @@ echo $PATH
 /home/USER/bin:/home/USER/.local/bin:/home/USER/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 ```
 
-As you can see, we now have __```/home/USER/bin```__ in our path where we can use to store all our scripts and files that we need to run in our environment.
+As you can see, we now have ```/home/USER/bin``` in our path where we can use to store all our scripts and files that we need to run in our environment as an alternative to ```/usr/local/bin```.
