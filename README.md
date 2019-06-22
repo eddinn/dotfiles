@@ -10,7 +10,7 @@ A set of simple instructions to help you get started
 
 Now let’s create a folder to get started. You can manage your dotfiles repo anywhere. I keep it along side my other code in ```~/Prog/dotfiles.``` So from here on, I will just refer to it as ```$DOT```.
 
-**Clone the dotfiles git repo, export the path and cd into it:**
+**Clone the dotfiles git repo, export the path and ```cd``` into it:**
 
 ```shell
 # Create the dir structure you want, or cd into your current project folder
@@ -31,7 +31,7 @@ mv ~/.bash_profile $DOT/bash
 mv ~/.profile $DOT/bash
 ```
 
-**Example of stow usage:**
+**Example usage of the ``stow`` command:**
 
 ```shell
 stow -v -R -t ~ git
@@ -45,18 +45,9 @@ lrwxrwxrwx  1 edvin edvin       28 jún 21 16:55 .gitconfig -> Prog/dotfiles/git
 
 ```-v``` is verbose, ```-R``` is recursive, and ```-t ~``` is the target directory, e.g your Home (```$HOME```) directory.
 
-**Add export path to .zshrc or .bashrc:**
+**Run the ```setup.sh```:**
 
-```shell
-# Example with .zshrc
-vim ~/.zshrc
-export PATH="$HOME/bin:$PATH"
-source ~/.zshrc
-```
-
-**Run the setup:**
-
-**Here are the contents of the setup.sh script:**
+**Here are the contents of the ```setup.sh``` script:**
 
 ```shell
 #!/usr/bin/env bash
@@ -136,3 +127,22 @@ To install the files for root, simply use ```sudo```
 ```shell
 sudo ./setup.sh
 ```
+
+**The ```bin``` directory**
+
+Inside the $DOT/bin/bin folder we can place any binary files we want to keep around across systems.
+
+**Add export path to ```.zshrc``` or ```.bashrc```:**
+
+```shell
+# Example with .zshrc
+vim ~/.zshrc
+export PATH="$HOME/bin:$PATH"
+source ~/.zshrc
+
+# Lets check and verify our path
+echo $PATH
+/home/USER/bin:/home/USER/.local/bin:/home/USER/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+```
+
+As you can see, we now have __```/home/USER/bin```__ in our path where we can use to store all our scripts and files that we need to run in our environment.
