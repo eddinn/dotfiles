@@ -2,8 +2,6 @@
 
 ## How I manage my dotfiles with GNU stow
 
----
-
 ### Installation, setup and usage
 
 A set of simple instructions to help you get started
