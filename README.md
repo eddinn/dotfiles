@@ -24,7 +24,7 @@ cd $DOT
 mv ~/.zshrc $DOT/zsh
 mv ~/.gitconfig $DOT/git
 mv ~/.bashrc $DOT/bash
-# You can also move .bash_profile and .profile if you like
+# You can also move .bash_profile and .profile if you have them
 mv ~/.bash_profile $DOT/bash
 mv ~/.profile $DOT/bash
 ```
@@ -43,7 +43,7 @@ lrwxrwxrwx  1 USER USER       28 jun 21 16:55 .gitconfig -> Prog/dotfiles/git/.g
 
 ```-v``` is verbose, ```-R``` is recursive, and ```-t ~``` is the target directory, e.g your Home (```$HOME```) directory.
 
-**Run the ```setup.sh```:**
+## The ```setup.sh``` script
 
 **Here are the contents of the ```setup.sh``` script:**
 
@@ -109,11 +109,8 @@ chmod a+x setup.sh
 Stowing apps for user:
 LINK: .profile => Prog/dotfiles/bash/.profile
 LINK: .bashrc => Prog/dotfiles/bash/.bashrc
-LINK: .bash_profile => Prog/dotfiles/bash/.bash_profile
-UNLINK: .gitattributes
-UNLINK: .gitconfig
-LINK: .gitattributes => Prog/dotfiles/git/.gitattributes (reverts previous action)
-LINK: .gitconfig => Prog/dotfiles/git/.gitconfig (reverts previous action)
+LINK: .gitconfig => Prog/dotfiles/git/.gitconfig
+LINK: .zshrc => Prog/dotfiles/zsh/.zshrc
 
 ##### ALL DONE
 ```
