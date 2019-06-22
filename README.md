@@ -125,7 +125,7 @@ sudo ./setup.sh
 
 **The ```bin``` directory**
 
-Inside the ```$DOT/bin/bin``` folder we can place any binary files we want to keep around across our system.
+Inside the ```$DOT/bin/bin``` folder we can place any binary files and scripts we want to keep around for our system.
 
 **Add export path to ```.zshrc``` or ```.bashrc```:**
 
