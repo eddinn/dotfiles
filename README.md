@@ -38,7 +38,7 @@ LINK: .gitconfig => code/dotfiles/git/.gitconfig
 
 ls -latr ~ | grep .git
 # Output
-lrwxrwxrwx  1 edvin edvin       28 jún 21 16:55 .gitconfig -> Prog/dotfiles/git/.gitconfig
+lrwxrwxrwx  1 USER USER       28 jun 21 16:55 .gitconfig -> Prog/dotfiles/git/.gitconfig
 ```
 
 ```-v``` is verbose, ```-R``` is recursive, and ```-t ~``` is the target directory, e.g your Home (```$HOME```) directory.
