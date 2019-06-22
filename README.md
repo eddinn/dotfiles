@@ -7,7 +7,6 @@
 **Note:**
 This README.md is compiled from the writings and idea of <a href="https://writingco.de/how-to-manage-your-dotfiles-with-stow/" target="_blank">Shawn McElroy</a>
 
-
 A set of simple instructions to help you get started
 
 Now let’s create a folder to get started. You can manage your dotfiles repo anywhere. I keep it along side my other code in ```~/Prog/dotfiles.``` So from here on, I will just refer to it as ```$DOT```.
