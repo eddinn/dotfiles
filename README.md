@@ -1,6 +1,6 @@
 # dotfiles
 
-## How I manage my dotfiles with GNU stow
+## How to manage dotfiles with GNU stow
 
 ### Installation, setup and usage
 
@@ -46,7 +46,7 @@ lrwxrwxrwx  1 USER USER       28 jun 21 16:55 .gitconfig -> Prog/dotfiles/git/.g
 
 ```-v``` is verbose, ```-R``` is recursive, and ```-t ~``` is the target directory, e.g your Home (```$HOME```) directory.
 
-## The ```setup.sh``` script
+### The ```setup.sh``` script
 
 **Here are the contents of the ```setup.sh``` script:**
 
