@@ -4,6 +4,8 @@
 git submodule init
 git submodule update
 
+USERNAME=$(whoami)
+
 # what directories should be installable by all users including the root user
 base=(
     bash
@@ -17,28 +19,25 @@ useronly=(
 
 # run the stow command for the passed in directory ($2) in location $1
 stowit() {
-    usr=$1
-    app=$2
+    USR=$1
+    APP=$2
     # -v verbose
     # -R recursive
     # -t target
-    stow -v -R -t ${usr} ${app}
+    stow -v -R -t "$USR" "$APP"
 }
 
 echo ""
-echo "Stowing apps for user: ${whoami}"
+echo "Stowing apps for user: $USERNAME"
 
 # install apps available to local users and root
-for app in ${base[@]}; do
-    stowit "${HOME}" $app 
+for APP in "${base[@]}"; do
+    stowit "$HOME" "$APP" 
 done
 
 # install only user space folders
-for app in ${useronly[@]}; do
-    if [[! "$(whoami)" = *"root"*]]; then
-        stowit "${HOME}" $app 
+for APP in "${useronly[@]}"; do
+    if [[ ! "$USERNAME" = *"root"* ]]; then
+        stowit "$HOME" "$APP" 
     fi
 done
-
-echo ""
-echo "##### ALL DONE"
