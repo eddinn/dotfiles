@@ -41,3 +41,6 @@ for APP in "${useronly[@]}"; do
         stowit "$HOME" "$APP" 
     fi
 done
+
+echo ""
+echo "##### ALL DONE"
