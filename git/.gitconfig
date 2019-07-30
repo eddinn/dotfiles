@@ -4,4 +4,9 @@
 	name = Edvin Dunaway
 	email = git@eddinn.net
 [core]
-	editor = vim
+	editor = code
+[color]
+    status = auto
+    branch = auto
+    interactive = auto
+    diff = auto
