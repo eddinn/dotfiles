@@ -156,7 +156,7 @@ alias md="mkdir -p"
 alias rd="rmdir"
 
 # apt aliases
-alias apt-upgrade="sudo apt update && sudo apt dist-upgrade && sudo cleanup-apt"
+alias apt-upgrade="sudo apt update && sudo apt dist-upgrade && sudo apt-cleanup"
 
 alias gitp="git pull"
 alias gits="git status"
