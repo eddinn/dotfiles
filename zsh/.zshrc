@@ -169,5 +169,5 @@ alias gitc="git checkout $1"
 gitf() {
  git add . && git commit -am "$1" && git push origin "$2"
 }
-
+export GOPATH=$HOME/Prog/go
 export PATH="$HOME/bin:$PATH"
