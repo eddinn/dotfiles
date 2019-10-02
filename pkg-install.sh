@@ -65,11 +65,11 @@ snappackages=(
 )
 
 echo "Installing apt packages"
-apt install -y "${aptpackages[@]}"
+sudo apt install -y "${aptpackages[@]}"
 
 echo "Upgrading pip3 and installing Python3 packages"
-pip3 install pip --upgrade
-pip3 install "${pippackages[@]}"
+sudo pip3 install pip --upgrade
+sudo pip3 install "${pippackages[@]}"
 
 echo "Installing google Chrome"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
