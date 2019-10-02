@@ -10,6 +10,7 @@ aptpackages=(
  dnsutils
  filezilla
  gamemode
+ git
  gnome-tweaks
  golang-go
  grub-customizer
