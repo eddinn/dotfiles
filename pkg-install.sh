@@ -1,8 +1,8 @@
 #!/bin/bash
 
-sudo apt upgrade
+sudo apt dist-upgrade
 
-aptpackages=(
+apt_packages=(
  audacity
  bash-completion
  chkrootkit
@@ -47,7 +47,7 @@ aptpackages=(
  zsh
 )
 
-pippackages=(
+pip_packages=(
  setuptools
  wheel
  ansible
@@ -57,7 +57,7 @@ pippackages=(
  testresources
 )
 
-snappackages=(
+snap_packages=(
  code
  discord
  gitkraken
@@ -65,11 +65,11 @@ snappackages=(
 )
 
 echo "Installing apt packages"
-sudo apt install -y "${aptpackages[@]}"
+sudo apt install -y --install-suggests "${apt_packages[@]}"
 
 echo "Upgrading pip3 and installing Python3 packages"
-sudo pip3 install pip --upgrade
-sudo pip3 install "${pippackages[@]}"
+sudo -H pip3 install pip --upgrade
+sudo -H pip3 install "${pip_packages[@]}"
 
 echo "Installing google Chrome"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -77,4 +77,4 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 rm -Rf google-chrome-stable_current_amd64.deb
 
 echo "Installing Snap packages"
-snap install "${snappackages[@]}"
+for i in "${snap_packages[@]}"; do sudo snap install "$i"; done
