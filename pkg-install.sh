@@ -64,7 +64,7 @@ snap_packages=(
  spotify
 )
 
-echo "Installing apt packages"
+echo "Installing user packages"
 sudo apt install -y --install-suggests "${apt_packages[@]}"
 
 echo "Upgrading pip3 and installing Python3 packages"
@@ -78,3 +78,5 @@ rm -Rf google-chrome-stable_current_amd64.deb
 
 echo "Installing Snap packages"
 for i in "${snap_packages[@]}"; do sudo snap install "$i"; done
+
+echo "All done!"
