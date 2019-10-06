@@ -8,7 +8,7 @@
 # Combine with setup.sh
 # Add gnome-shell-extensions
 
-OS=$(awk -F'=' -F'"' '/^NAME=/ {print tolower($2)}' /etc/*-release 2>/dev/null | tr -d '"')
+OS=$(awk -F'=' '/^NAME=/ {print tolower($2)}' /etc/*-release 2>/dev/null | tr -d '"')
 echo Running on "$OS" distribution
 
 if [ "$OS" == "ubuntu" ]
