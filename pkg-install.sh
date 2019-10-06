@@ -2,10 +2,9 @@
 
 # Author: Edvin Dunaway
 # Contact: edvin@eddinn.net
-# Version: 0.1.5
+# Version: 0.1.7
 
 # TODO:
-# Server/Workstation install
 # Combine with setup.sh
 # Add gnome-shell-extensions
 
