@@ -90,57 +90,63 @@ setup_ubuntu () {
 
 setup_fedora () {
   # Upgrade the system
-  sudo apt dist-upgrade
+  sudo dnf distro-sync
 
   # Define user rpm packages to install
   rpm_packages=(
    audacity
    bash-completion
+   bind-utils
    chkrootkit
    chrome-gnome-shell
-   dnsutils
    filezilla
    gamemode
    git
    gnome-tweaks
-   golang-go
+   golang
    grub-customizer
    hexchat
+   libnfsidmap
+   java-12-openjdk
    jq
    lame
-   mkchromecast
-   mysql-common
-   nfs-kernel-server
+   mysql
+   nfs-util 
    nmap
    nodejs
    npm
-   openjdk-8-jre
-   openjdk-8-jre-headless
    openssh-server
    puppet
-   puppet-lint
    python3
    python3-pip
    qbittorrent
    remmina
    rkhunter
    rsync
-   shellcheck
+   ShellCheck
    snapd
    steam
    stow
-   unattended-upgrades
    unzip
-   vim
+   vim-enhanced
    vlc
    zip
    zsh
   )
+
+  # Enable the Free and NonFree repos from RPM Fusion
+  echo "Installing Free and NonFree RPM Fusion repo packages"
+  sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm
+  sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm
+
+  # Enabling Appstream data from the RPM Fusion repos
+  sudo dnf groupupdate core
+
   echo "Installing user packages"
   sudo dnf install -y "${rpm_packages[@]}"
 
   echo "Installing Google Chrome"
-  if [ "$(sudo dpkg-query -W -f='${Status}' google-chrome-stable 2>/dev/null | grep -c "ok installed")" -eq 0 ];
+  if [ "$(sudo rpm -q google-chrome-stable 2>/dev/null | grep -c "google-chrome-stable")" -eq 0 ];
   then
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm || curl -L -O https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
     sudo rpm -Uhv google-chrome-stable_current_x86_64.rpm
@@ -148,7 +154,7 @@ setup_fedora () {
   fi
 
   echo "Installing TeamViewer"
-  if [ "$(sudo dpkg-query -W -f='${Status}' teamviewer 2>/dev/null | grep -c "ok installed")" -eq 0 ];
+  if [ "$(sudo rpm -q teamviewer 2>/dev/null | grep -c "teamviewer")" -eq 0 ];
   then
     wget https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm || curl -L -O https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm
     sudo rpm -Uhv teamviewer.x86_64.rpm
