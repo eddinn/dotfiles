@@ -14,7 +14,7 @@
 # Function for Ubuntu install
 setup_ubuntu () {
   # Upgrade the system
-  sudo apt dist-upgrade
+  sudo apt -y dist-upgrade
 
   # Define user Apt packages to install
   apt_packages=(
@@ -87,7 +87,7 @@ setup_ubuntu () {
 # Function for Fedora install
 setup_fedora () {
   # Upgrade the system
-  sudo dnf distro-sync
+  sudo dnf -y distro-sync
 
   # Define user RPM packages to install
   rpm_packages=(
@@ -108,7 +108,7 @@ setup_fedora () {
    jq
    lame
    mysql
-   nfs-util 
+   nfs-utils
    nmap
    nodejs
    npm
@@ -133,11 +133,11 @@ setup_fedora () {
 
   # Enable the Free and NonFree repos from RPM Fusion
   echo "Installing Free and NonFree RPM Fusion repo packages"
-  sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm
-  sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm
+  sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm
+  sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm
 
   # Enabling Appstream data from the RPM Fusion repos
-  sudo dnf groupupdate core
+  sudo dnf -y groupupdate core
 
   # Install all the defines user packages via dnf
   echo "Installing user packages"
@@ -198,6 +198,10 @@ echo "Upgrading pip3 and installing Python3 packages"
 sudo -H pip3 install pip --upgrade
 # Install packages to user space
 pip3 install --user "${pip_packages[@]}"
+
+# Make sure snapd.service is enabled and started
+echo "Enabling and starting snapd.service"
+sudo systemctl enable snapd.service && sudo systemctl start snapd.service
 
 # Install user snap packages
 echo "Installing Snap packages"
