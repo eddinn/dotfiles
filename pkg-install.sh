@@ -2,23 +2,16 @@
 
 # Author: Edvin Dunaway
 # Contact: edvin@eddinn.net
-# Version: 0.1.7
+# Version: 0.1.8
+#
 
 # TODO:
 # Combine with setup.sh
 # Add gnome-shell-extensions
+#
+#
 
-OS=$(awk -F'=' '/^NAME=/ {print tolower($2)}' /etc/*-release 2>/dev/null | tr -d '"')
-echo Running on "$OS" distribution
-
-if [ "$OS" == "ubuntu" ]
-then
- setup_ubuntu
-elif [ "$OS" == "fedora" ]
-then
- setup_fedora
-fi
-
+# Function for Ubuntu install
 setup_ubuntu () {
   # Upgrade the system
   sudo apt dist-upgrade
@@ -67,9 +60,12 @@ setup_ubuntu () {
    zip
    zsh
   )
+
+  # Install all the defines user packages via apt with suggested packages
   echo "Installing user packages"
   sudo apt install -y --install-suggests "${apt_packages[@]}"
 
+  # Install latest stable Google Chrome, if not installed
   echo "Installing Google Chrome"
   if [ "$(sudo dpkg-query -W -f='${Status}' google-chrome-stable 2>/dev/null | grep -c "ok installed")" -eq 0 ];
   then
@@ -78,6 +74,7 @@ setup_ubuntu () {
     rm -Rf google-chrome-stable_current_amd64.deb
   fi
 
+  # Install TeamViewer, if not installed
   echo "Installing TeamViewer"
   if [ "$(sudo dpkg-query -W -f='${Status}' teamviewer 2>/dev/null | grep -c "ok installed")" -eq 0 ];
   then
@@ -87,11 +84,12 @@ setup_ubuntu () {
   fi
 }
 
+# Function for Fedora install
 setup_fedora () {
   # Upgrade the system
   sudo dnf distro-sync
 
-  # Define user rpm packages to install
+  # Define user RPM packages to install
   rpm_packages=(
    audacity
    bash-completion
@@ -141,9 +139,11 @@ setup_fedora () {
   # Enabling Appstream data from the RPM Fusion repos
   sudo dnf groupupdate core
 
+  # Install all the defines user packages via dnf
   echo "Installing user packages"
   sudo dnf install -y "${rpm_packages[@]}"
 
+  # Install latest stable Google Chrome, if not installed
   echo "Installing Google Chrome"
   if [ "$(sudo rpm -q google-chrome-stable 2>/dev/null | grep -c "google-chrome-stable")" -eq 0 ];
   then
@@ -152,6 +152,7 @@ setup_fedora () {
     rm -Rf google-chrome-stable_current_x86_64.rpm
   fi
 
+  # Install TeamViewer, if not installed
   echo "Installing TeamViewer"
   if [ "$(sudo rpm -q teamviewer 2>/dev/null | grep -c "teamviewer")" -eq 0 ];
   then
@@ -160,6 +161,19 @@ setup_fedora () {
     rm -Rf teamviewer.x86_64.rpm
   fi
 }
+
+# Determine what OS distro we are running..
+# So far just Ubuntu and Fedora, since I use them the most.
+OS=$(awk -F'=' '/^NAME=/ {print tolower($2)}' /etc/*-release 2>/dev/null | tr -d '"')
+echo Running on "$OS" distribution
+
+if [ "$OS" == "ubuntu" ]
+then
+ setup_ubuntu
+elif [ "$OS" == "fedora" ]
+then
+ setup_fedora
+fi
 
 # Define Python3 Pip packages to install
 pip_packages=(
@@ -175,16 +189,21 @@ pip_packages=(
 # Define Snap packages to install
 snap_packages=(
  discord
- gitkraken
  spotify
 )
 
+# Install Python3 pip packages
 echo "Upgrading pip3 and installing Python3 packages"
+#First, upgrade pip to latest version
 sudo -H pip3 install pip --upgrade
-sudo -H pip3 install "${pip_packages[@]}"
+# Install packages to user space
+pip3 install --user "${pip_packages[@]}"
 
+# Install user snap packages
 echo "Installing Snap packages"
+# We need to use --classig for MS VSCode, so taking out of the loop
 sudo snap install code --classic
+# Install the rest of the snap packages
 for i in "${snap_packages[@]}"; do sudo snap install "$i"; done
 
 echo "All done!"
