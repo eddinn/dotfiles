@@ -70,7 +70,7 @@ setup_ubuntu () {
   if [ "$(sudo dpkg-query -W -f='${Status}' google-chrome-stable 2>/dev/null | grep -c "ok installed")" -eq 0 ];
   then
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb || curl -L -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo dpkg -i google-chrome-stable_current_amd64.deb
+    sudo apt install google-chrome-stable_current_amd64.deb
     rm -Rf google-chrome-stable_current_amd64.deb
   fi
 
@@ -79,7 +79,7 @@ setup_ubuntu () {
   if [ "$(sudo dpkg-query -W -f='${Status}' teamviewer 2>/dev/null | grep -c "ok installed")" -eq 0 ];
   then
     wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb || curl -L -O https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
-    sudo dpkg -i teamviewer_amd64.deb
+    sudo apt install teamviewer_amd64.deb
     rm -Rf teamviewer_amd64.deb
   fi
 }
