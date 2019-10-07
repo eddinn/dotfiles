@@ -1,0 +1,1 @@
+/home/edvin/Prog/toolbox/bash/snap/remove-old-snaps.sh
