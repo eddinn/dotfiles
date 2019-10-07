@@ -199,10 +199,6 @@ sudo -H pip3 install pip --upgrade
 # Install packages to user space
 pip3 install --user "${pip_packages[@]}"
 
-# Make sure snapd.service is enabled and started
-echo "Enabling and starting snapd.service"
-sudo systemctl enable snapd.service && sudo systemctl start snapd.service
-
 # Install user snap packages
 echo "Installing Snap packages"
 # We need to use --classig for MS VSCode, so taking out of the loop
