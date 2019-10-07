@@ -2,7 +2,7 @@
 
 # Author: Edvin Dunaway
 # Contact: edvin@eddinn.net
-# Version: 0.1.8
+# Version: 0.1.9
 #
 
 # TODO:
@@ -137,9 +137,10 @@ setup_fedora () {
   sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm
 
   # Enabling Appstream data from the RPM Fusion repos
+  echo "Core groupupdate"
   sudo dnf -y groupupdate core
 
-  # Install all the defines user packages via dnf
+  # Install all the defined user packages via dnf
   echo "Installing user packages"
   sudo dnf install -y "${rpm_packages[@]}"
 
@@ -186,12 +187,6 @@ pip_packages=(
  testresources
 )
 
-# Define Snap packages to install
-snap_packages=(
- discord
- spotify
-)
-
 # Install Python3 pip packages
 echo "Upgrading pip3 and installing Python3 packages"
 #First, upgrade pip to latest version
@@ -199,10 +194,16 @@ sudo -H pip3 install pip --upgrade
 # Install packages to user space
 pip3 install --user "${pip_packages[@]}"
 
+# Define Snap packages to install
+snap_packages=(
+ code --classic
+ discord
+ slack --classic
+ spotify
+)
+
 # Install user snap packages
 echo "Installing Snap packages"
-# We need to use --classig for MS VSCode, so taking out of the loop
-sudo snap install code --classic
 # Install the rest of the snap packages
 for i in "${snap_packages[@]}"; do sudo snap install "$i"; done
 
