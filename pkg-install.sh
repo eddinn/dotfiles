@@ -196,13 +196,14 @@ pip3 install --user "${pip_packages[@]}"
 
 # Define Snap packages to install
 snap_packages=(
- code --classic
  discord
- slack --classic
  spotify
 )
 
 # Install user snap packages
+echo "Installing VSCode and Slack with --classic"
+sudo snap install code --classic
+sudo snap install slack --classic
 echo "Installing Snap packages"
 # Install the rest of the snap packages
 for i in "${snap_packages[@]}"; do sudo snap install "$i"; done
