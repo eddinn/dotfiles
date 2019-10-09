@@ -149,7 +149,7 @@ setup_fedora () {
   if [ "$(sudo rpm -q google-chrome-stable 2>/dev/null | grep -c "google-chrome-stable")" -eq 0 ];
   then
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm || curl -L -O https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-    sudo rpm -Uhv google-chrome-stable_current_x86_64.rpm
+    sudo dnf install -y ./google-chrome-stable_current_x86_64.rpm
     rm -Rf google-chrome-stable_current_x86_64.rpm
   fi
 
@@ -158,7 +158,7 @@ setup_fedora () {
   if [ "$(sudo rpm -q teamviewer 2>/dev/null | grep -c "teamviewer")" -eq 0 ];
   then
     wget https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm || curl -L -O https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm
-    sudo rpm -Uhv teamviewer.x86_64.rpm
+    sudo dnf install -y ./teamviewer.x86_64.rpm
     rm -Rf teamviewer.x86_64.rpm
   fi
 }
