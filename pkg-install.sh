@@ -8,8 +8,11 @@
 # TODO:
 # Combine with setup.sh
 # Add gnome-shell-extensions
-#
-#
+# Break the script down to specific app installs with dotfiles and addons
+# vscode addon installs
+# Hexchat config
+# Steam autoexec.cfg
+# Vim dotfiles
 
 # Function for Ubuntu install
 setup_ubuntu () {
