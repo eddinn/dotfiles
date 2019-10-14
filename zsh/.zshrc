@@ -171,3 +171,4 @@ gitf() {
 }
 export GOPATH=$HOME/Prog/go
 export PATH="$HOME/bin:$PATH"
+export PATH=~/.npm-global/bin:$PATH
