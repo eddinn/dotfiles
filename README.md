@@ -4,13 +4,12 @@
 
 ### Installation, setup and usage
 
-**Note:** This README.md is compiled from the writings and idea of <a href="https://writingco.de/how-to-manage-your-dotfiles-with-stow/" target="_blank">Shawn McElroy</a>
 A set of simple instructions to help you get started
-Now let’s create a folder to get started. You can manage your dotfiles repo anywhere. I keep it along side my other code in ```~/Prog/dotfiles.``` So from here on, I will just refer to it as ```$DOT```.
+Now let’s create a folder to get started. You can manage your dotfiles repo anywhere. I keep it along side my other code in `~/Prog/dotfiles.` So from here on, I will just refer to it as `$DOT`.
 
 **Clone the dotfiles git repo, export the path and ```cd``` into it:**
 
-```shell
+```bash
 # Create the dir structure you want, or cd into your current project folder
 cd ~/Prog
 git clone git@github.com:eddinn/dotfiles.git
@@ -20,7 +19,7 @@ cd $DOT
 
 **Remember to replace or modify the dotfiles to your needs:**
 
-```shell
+```bash
 mv ~/.zshrc $DOT/zsh
 mv ~/.gitconfig $DOT/git
 mv ~/.bashrc $DOT/bash
@@ -29,9 +28,9 @@ mv ~/.bash_profile $DOT/bash
 mv ~/.profile $DOT/bash
 ```
 
-**Example usage of the ``stow`` command:**
+**Example usage of the `stow` command:**
 
-```shell
+```bash
 stow -v -R -t ~ git
 # Output
 LINK: .gitconfig => code/dotfiles/git/.gitconfig
@@ -40,13 +39,13 @@ ls -latr ~ | grep .git
 lrwxrwxrwx  1 USER USER       28 jun 21 16:55 .gitconfig -> Prog/dotfiles/git/.gitconfig
 ```
 
-```-v``` is verbose, ```-R``` is recursive, and ```-t ~``` is the target directory, e.g your Home (```$HOME```) directory.
+`-v` is verbose, `-R` is recursive, and `-t ~` is the target directory, e.g your Home (`$HOME`) directory.
 
-### The ```setup.sh``` script
+### The `stowit.sh` script
 
-**Here are the contents of the ```setup.sh``` script:**
+**Here are the contents of the ```stowit.sh``` script:**
 
-```shell
+```bash
 #!/usr/bin/env bash
 # Make sure we have pulled in and updated any submodules
 git submodule init
@@ -68,8 +67,7 @@ stowit() {
     # -t target
     stow -v -R -t ${usr} ${app}
 }
-echo ""
-echo "Stowing apps for user: ${whoami}"
+echo -e 'Stowing apps for user: ' "${whoami}"
 # Install apps available to local users and root
 for app in ${base[@]}; do
     stowit "${HOME}" $app
@@ -80,8 +78,7 @@ for app in ${useronly[@]}; do
         stowit "${HOME}" $app
     fi
 done
-echo ""
-echo "##### ALL DONE"
+echo -e '\nAll done!'
 ```
 
 As you can see, it's relatively straight forward and simple to use..
@@ -90,11 +87,11 @@ The first loop is to install folders for any user, and the second has a check to
 
 **So lets run it to install our dotfiles:**
 
-```shell
-# Make the setup.sh file executable
-chmod a+x setup.sh
-# Run setup.sh
-./setup.sh
+```bash
+# Make the stowit.sh file executable
+chmod a+x stowit.sh
+# Run stowit.sh
+./stowit.sh
 # Output
 Stowing apps for user:
 LINK: .profile => Prog/dotfiles/bash/.profile
@@ -102,23 +99,23 @@ LINK: .bashrc => Prog/dotfiles/bash/.bashrc
 LINK: .gitconfig => Prog/dotfiles/git/.gitconfig
 LINK: .zshrc => Prog/dotfiles/zsh/.zshrc
 
-##### ALL DONE
+All done!
 ```
 
 You can see that stow is pretty smart about linking our files and folders. It linked our new bash files. But when we ran stow again it went through our previously linked git files, re re-linked them. You can actually configure how that handles those situations with different flags. stow will also abort stowing folders when it finds new files that have not been stowed before and will tell you what files so you can fix them.
 To install the files for root, simply use ```sudo```
 
-```shell
-sudo ./setup.sh
+```bash
+sudo ./stowit.sh
 ```
 
-**The ```bin``` directory**
+**The `bin` directory**
 
-Inside the ```$DOT/bin/bin``` folder we can place any binary files and scripts we want to keep around for our system.
+Inside the `$DOT/bin/bin` folder we can place any binary files and scripts we want to keep around for our system.
 
-**Add export path to ```.zshrc``` or ```.bashrc```:**
+**Add export path to `.zshrc` or `.bashrc`:**
 
-```shell
+```bash
 # Example with .zshrc
 vim ~/.zshrc
 export PATH="$HOME/bin:$PATH"
@@ -128,4 +125,4 @@ echo $PATH
 /home/USER/bin:/home/USER/.local/bin:/home/USER/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 ```
 
-We now have ```/home/USER/bin``` in our path where we can use to store all our scripts and files that we need to run in our environment as an alternative to ```/usr/local/bin```.
+We now have `/home/USER/bin` in our path where we can use to store all our scripts and files that we need to run in our environment as an alternative to `/usr/local/bin`.
