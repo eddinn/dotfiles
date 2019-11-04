@@ -109,8 +109,7 @@ To install the files for root, simply use ```sudo```
 sudo ./stowit.sh
 ```
 
-**The `bin` directory**
-
+**Now, the `bin` directory**
 Inside the `$DOT/bin/bin` folder we can place any binary files and scripts we want to keep around for our system.
 
 **Add export path to `.zshrc` or `.bashrc`:**
