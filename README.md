@@ -1,6 +1,6 @@
 # dotfiles
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/72002cba793e441cbe02f708afabdacc)](https://www.codacy.com/manual/Eddinn/dotfiles?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=eddinn/dotfiles&amp;utm_campaign=Badge_Grade) ![GitHub](https://img.shields.io/github/license/eddinn/dotfiles)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/72002cba793e441cbe02f708afabdacc)](https://www.codacy.com/manual/Eddinn/dotfiles?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=eddinn/dotfiles&amp;utm_campaign=Badge_Grade) ![GitHub issues](https://img.shields.io/github/issues/eddinn/dotfiles) ![GitHub](https://img.shields.io/github/license/eddinn/dotfiles)
 
 Manage you dotfiles with the GNU `stow` command
 
