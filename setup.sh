@@ -15,6 +15,7 @@ base=(
 # folders that should, or only need to be installed for a local user
 useronly=(
     git
+    bin
 )
 
 # run the stow command for the passed in directory ($2) in location $1
