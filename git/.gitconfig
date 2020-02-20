@@ -1,8 +1,8 @@
 # This is Git's per-user configuration file.
 [user]
 # Please adapt and uncomment the following lines:
-	name = Edvin Dunaway
-	email = git@eddinn.net
+	name = 
+	email = 
 [core]
 	editor = code
 [color]
